@@ -776,24 +776,32 @@ test-data-manager读取测试数据文件
 ## 约束与要求
 
 ### 数据完整性
+<!-- evolution:mutable -->
 - JSON格式必须符合TD-Test Data v1.0标准
 - 统计数据必须与用例状态保持一致
 - 用例ID必须唯一且连续（TC-001, TC-002, ...）
+<!-- evolution:end -->
 
 ### 文件管理
+<!-- evolution:mutable -->
 - 测试数据文件和模板文件必须分开保存
 - 文件命名必须遵循命名规则
 - 文件路径必须正确反映版本和需求关系
+<!-- evolution:end -->
 
 ### 更新规则
+<!-- evolution:mutable -->
 - 更新时仅修改指定字段
 - 保持其他字段不变
 - 每次更新后必须重新计算统计数据
+<!-- evolution:end -->
 
 ### 查询效率
+<!-- evolution:mutable -->
 - 查询响应必须快速（<3秒）
 - 汇总统计必须准确
 - 支持批量查询
+<!-- evolution:end -->
 
 ### 幻觉防范
 - 仅操作实际存在的文件，不编造文件路径

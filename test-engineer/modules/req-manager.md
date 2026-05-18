@@ -28,18 +28,20 @@
 - 需求内容必须**润色后记录**
 
 ### 禁止事项
+<!-- evolution:mutable -->
 - ❌ 禁止猜测版本号（必须由调用者提供）
 - ❌ 禁止强行归类模糊需求（返回调用者处理）
 - ❌ 禁止遗漏需求基本信息
 - ❌ 禁止编造需求内容
 - ❌ 禁止作为统一入口（应提示使用SKILL.md）
+<!-- evolution:end -->
 
 ### 幻觉防范机制
 - 版本号必须由SKILL.md提供
 - 需求类型不确定时返回调用者处理
 - 需求内容以SKILL.md提供的信息为准
 - 关联关系需SKILL.md确认
-- **平台线需求必须读取共享产品知识**：`../presets/{preset}/product-knowledge.md`，确保需求理解不偏离产品规则（如恢复出厂=所有开关OFF、配网≠绑定等）
+- **平台线需求必须读取共享产品知识**：`../shared-knowledge/platform-app-product-knowledge.md`，确保需求理解不偏离产品规则（如恢复出厂=所有开关OFF、配网≠绑定等）
 
 ---
 
@@ -74,6 +76,7 @@
 
 采用关键词评分机制判断需求类型：
 
+<!-- evolution:mutable -->
 | 关键词 | 类别 | 权重 |
 |--------|------|:----:|
 | **算法线** |
@@ -92,6 +95,7 @@
 | **集成需求** |
 | 性能测试、续航测试 | 测试类型 | +5 |
 | 跨模块、综合测试 | 测试范围 | +4 |
+<!-- evolution:end -->
 
 ### 判断逻辑
 
@@ -147,9 +151,9 @@
 **执行步骤：**
 
 1. **提取功能域关键词**：从 requirement_desc 中识别功能域（如"设备管理""任务调度""地图导航""网络管理""日志分析"）
-2. **查询业务规则**：读取 `../presets/{preset}/knowledge-base/knowledge-base/business-rules/index.json`，按 `area` 字段匹配，获取该功能域的所有业务规则和 test_implications
-3. **查询缺陷模式**：读取 `../presets/{preset}/knowledge-base/knowledge-base/defect-patterns/pattern-index.json`，按 `requirement_type` 匹配，获取该需求类型的高频缺陷模式
-4. **读取系统基线**：根据需求涉及的服务，从 `../presets/{preset}/knowledge-base/knowledge-base/system-baselines/` 读取设备规格、服务列表等基线信息
+2. **查询业务规则**：读取 `../shared-knowledge/knowledge-base/business-rules/index.json`，按 `area` 字段匹配，获取该功能域的所有业务规则和 test_implications
+3. **查询缺陷模式**：读取 `../shared-knowledge/knowledge-base/defect-patterns/pattern-index.json`，按 `requirement_type` 匹配，获取该需求类型的高频缺陷模式
+4. **读取系统基线**：根据需求涉及的服务，从 `../shared-knowledge/knowledge-base/system-baselines/` 读取设备规格、服务列表等基线信息
 
 **输出：** 将检索到的知识注入后续步骤的上下文中：
 - 业务规则列表 → 步骤2的"系统视角"和"异常视角"参考
