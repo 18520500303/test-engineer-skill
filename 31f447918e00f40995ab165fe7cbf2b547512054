@@ -1,0 +1,58 @@
+test-engineer/SKILL.md
+  01a5d0ff40967b8f 12-31,49,64,93,111-112,139-142,148-151,188-193,225,233
+test-engineer/modules/req-manager.md
+  01a5d0ff40967b8f 31,37,44,79,98,154-156
+test-engineer/modules/performance-baseline.md
+  01a5d0ff40967b8f 193,200,385,397,529,535
+test-engineer/modules/release-notes.md
+  01a5d0ff40967b8f 171,212,218,234-238
+test-engineer/modules/evolution.md
+  01a5d0ff40967b8f 5,13,15-17,21,23,25-43,45,47-60,62-66,68-69,73-78,82,88-95,99,105-119,121-170,172,174-180,182,184-186,190,200-202,210-212,218-224
+test-engineer/modules/platform-test-report.md
+  01a5d0ff40967b8f 81,86,104,111,117,124
+test-engineer/modules/archive-manager.md
+  01a5d0ff40967b8f 39,45,440,447
+test-engineer/modules/test-data-manager.md
+  01a5d0ff40967b8f 779,783,786,790,793,797,800,804
+test-engineer/evolution-log.md
+  01a5d0ff40967b8f 3-12
+test-engineer/modules/test-case-generator.md
+  01a5d0ff40967b8f 42,47,50,57,63,71,78
+test-engineer/modules/algo-test-report.md
+  01a5d0ff40967b8f 107,112,267,273
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.3.14",
+  "base_commit_sha": "31f447918e00f40995ab165fe7cbf2b547512054",
+  "prompts": {
+    "01a5d0ff40967b8f": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "2bb008cc-3bcb-4d3a-b00e-d7cc951d72d0",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "周健荣 <zhoujianrong@zhoujianrongdeMacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 279,
+      "total_deletions": 95,
+      "accepted_lines": 277,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/024ba1fc3652978d2b3e04e269eda6abdac0f336a0be940677283863fd3a79c5"
+    },
+    "9b9f4c368bb345de": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ee694fd7-5b07-4eb4-9cd4-c7b02a50aef5",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "周健荣 <zhoujianrong@zhoujianrongdeMacBook-Pro.local>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 665,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/46b21d5c50c892893b902e58f8e7bf82e43711e26fb22a7c79cb2c9ea312a8a1"
+    }
+  }
+}
