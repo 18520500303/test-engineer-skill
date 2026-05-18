@@ -11,6 +11,7 @@ modules:
   - test-case-generator
   - archive-manager
   - test-data-manager
+  - evolution
 
 # 你的产品线版本号格式
 version_patterns:
