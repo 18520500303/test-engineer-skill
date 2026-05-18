@@ -1,0 +1,17 @@
+name: "example"
+display_name: "示例产品"
+version: "1.0.0"
+description: "示例配置包 - 复制此目录并修改为你的产品线配置"
+
+# 白名单：只有列出的模块对该 preset 可用
+# SKILL.md 路由时检查此列表，未列出的模块不会加载
+# 用户请求未列出的模块时，提示"当前配置包不支持此功能"
+modules:
+  - req-manager
+  - test-case-generator
+  - archive-manager
+  - test-data-manager
+
+# 你的产品线版本号格式
+version_patterns:
+  main: "v1.x.x"
