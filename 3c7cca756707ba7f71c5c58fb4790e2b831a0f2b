@@ -1,0 +1,24 @@
+scripts/install.sh
+  a846d94c8d45b823 7,24-25,27,29-30,33-34,38-48,50-53,55-67,69,71-81,84-85,87-93,95-96,98-99,101,103-106
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.0",
+  "base_commit_sha": "3c7cca756707ba7f71c5c58fb4790e2b831a0f2b",
+  "prompts": {
+    "a846d94c8d45b823": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "711f04c2-eccc-40b3-9e8a-65f8c152d4cd",
+        "model": "qwen3.7-max"
+      },
+      "human_author": "zhoujianrong <18520500303@users.noreply.github.com>",
+      "messages": [],
+      "total_additions": 71,
+      "total_deletions": 91,
+      "accepted_lines": 71,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/d4fa5d793e21aba5fca7e5be88d2184336583d739ba727ed9dcc3ca9498c2d8b"
+    }
+  }
+}
