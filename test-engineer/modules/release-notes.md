@@ -28,7 +28,7 @@
 需求文档是撰写更新说明的**核心依据**，提供功能的业务背景、用户场景、功能描述等关键信息，直接决定"新增功能"板块的内容质量。
 
 **平台线需求记录库**：
-- 路径：`/Users/zhoujianrong/Desktop/workdata/测试用例/平台线/需求记录.md`
+- 路径：``{output.root}/平台/_共享/需求记录.md``
 - 内容结构：按版本号分章节，每个需求包含：
   - 基本信息（版本、JIRA编号、KB链接、涉及平台、功能描述）
   - 用户场景（客户实际使用场景，直接用于撰写"带来的效果"）
@@ -60,27 +60,26 @@
 ### 2. 测试用例文件（提取功能范围和模块覆盖）
 
 **平台线**：
-- 路径：`/Users/zhoujianrong/Desktop/workdata/测试用例/平台线/测试用例_MP_v{版本号}.xlsx`
-- 或：`/Users/zhoujianrong/Desktop/workdata/测试用例/平台线/MP_v{版本号}.xlsx`
+- 路径：``{output.root}/平台/MP_v{版本号}/测试用例/测试用例_MP_v{版本号}.xlsx``
 - 读取方式：使用 xlsx skill 读取，按"所属模块"字段分组统计
 - 用途：确认功能模块范围、补充需求文档中未详述的功能点
 
 **算法线**：
-- 路径：`/Users/zhoujianrong/Desktop/workdata/测试用例/算法测试/A{版本号}/`
+- 路径：``{output.root}/算法/A{版本号}/``
 - 读取方式：扫描目录下的测试用例文件
 
 ### 3. Jira 缺陷数据（提取问题修复项）
 
-调用 jira-manager 获取缺陷数据：
+调用 jira-manager 获取缺陷数据（项目名从 preset `jira_projects.*` 读取）：
 
 **平台线**：
 ```
-JQL: project = WRB AND issuetype = 缺陷 AND (affectedVersion = "MP_v{版本号}" OR fixVersion = "MP_v{版本号}") ORDER BY priority DESC
+JQL: project = {jira_projects.platform_defect} AND issuetype = 缺陷 AND (affectedVersion = "MP_v{版本号}" OR fixVersion = "MP_v{版本号}") ORDER BY priority DESC
 ```
 
 **算法线**：
 ```
-JQL: project = WRB AND issuetype = 缺陷 AND labels in ("A{版本号}") ORDER BY priority DESC
+JQL: project = {jira_projects.platform_defect} AND issuetype = 缺陷 AND labels in ("A{版本号}") ORDER BY priority DESC
 ```
 
 需要的字段：summary, status, priority, resolution, versions, fixVersions
@@ -114,7 +113,7 @@ JQL: project = WRB AND issuetype = 缺陷 AND labels in ("A{版本号}") ORDER B
 读取需求记录库，提取目标版本的所有需求信息：
 
 ```
-1. 读取 /Users/zhoujianrong/Desktop/workdata/测试用例/平台线/需求记录.md
+1. 读取 `{output.root}/平台/_共享/需求记录.md`
 2. 定位到目标版本章节
 3. 逐个需求提取：
    - 功能描述 → 理解这个功能"是什么"
@@ -277,12 +276,12 @@ JQL: project = WRB AND issuetype = 缺陷 AND labels in ("A{版本号}") ORDER B
 
 **平台线**：
 ```
-/Users/zhoujianrong/Desktop/workdata/测试用例/平台线/测试报告/{版本号}/{版本号}_版本更新说明（客户版）.md
+{output.root}/平台/{版本号}/测试报告/{版本号}_版本更新说明（客户版）.md
 ```
 
 **算法线**：
 ```
-/Users/zhoujianrong/Desktop/workdata/测试用例/算法测试/{版本号}/测试报告/{版本号}_版本更新说明（客户版）.md
+{output.root}/算法/{版本号}/测试报告/{版本号}_版本更新说明（客户版）.md
 ```
 
 ---
@@ -331,13 +330,13 @@ summary:
 
 处理流程：
 1. 识别版本类型：平台线（MP_v1.1.27）
-2. 读取需求文档：/Users/zhoujianrong/Desktop/workdata/测试用例/平台线/需求记录.md
+2. 读取需求文档：`{output.root}/平台/_共享/需求记录.md`
    → 定位到 "## MP_v1.1.27 需求" 章节
    → 提取7个需求的功能描述、用户场景、功能清单
-3. 读取测试用例：/Users/zhoujianrong/Desktop/workdata/测试用例/平台线/测试用例_MP_v1.1.27.xlsx
+3. 读取测试用例：`{output.root}/平台/MP_v1.1.27/测试用例/测试用例_MP_v1.1.27.xlsx`
    → 按模块分组，交叉验证功能覆盖范围
 4. 调用 jira-manager 查询已修复缺陷：
-   JQL: project = WRB AND issuetype = 缺陷 AND (affectedVersion = "MP_v1.1.27" OR fixVersion = "MP_v1.1.27")
+   JQL: project = {jira_projects.platform_defect} AND issuetype = 缺陷 AND (affectedVersion = "MP_v1.1.27" OR fixVersion = "MP_v1.1.27")
 5. 筛选已修复缺陷（状态=关闭，解决=已修复）
 6. 三方数据交叉分类：需求文档的功能 → 新增功能；Jira缺陷 → 优化与调整
 7. 文案转化：基于需求文档的用户场景撰写"带来的效果"

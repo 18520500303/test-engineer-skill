@@ -64,28 +64,29 @@
 
 ## 目录结构
 
+> 所有路径相对于 preset 的 `paths.output_root` 配置。
+
 ```
-算法测试/
+算法/
 ├── {版本}/
 │   └── 归档/
 │       ├── 需求归档.md
 │       ├── 方案归档.md
 │       ├── 测试理解归档.md
 │       └── 测试用例归档.md
-└── 跨版本专项/
+└── _跨版本专项/
     └── 归档管理/
         ├── 归档索引.md
         ├── 版本变更记录.md
         └── 测试结果汇总.md
 
-平台线/
-└── 平台测试/
-    └── {版本}/
-        └── 归档/
-            ├── 需求归档.md
-            └── 测试用例归档.md
+平台/
+└── {版本}/
+    └── 归档/
+        ├── 需求归档.md
+        └── 测试用例归档.md
 
-专项测试/
+专项/
 └── {专项名称}/
     └── 归档/
         ├── 需求归档.md
@@ -125,8 +126,8 @@ found: true
 status: 已验证
 requirement_id: REQ-A214-001
 requirement_name: 悬空障碍物碰撞优化
-test_points_path: 算法测试/A2.14/测试点/悬空障碍物测试点.md
-test_cases_path: 算法测试/A2.14/测试用例/A2.14测试用例.xlsx
+test_points_path: 算法/A2.14/测试点/悬空障碍物测试点.md
+test_cases_path: 算法/A2.14/测试用例/A2.14测试用例.xlsx
 ```
 
 ---
@@ -232,14 +233,14 @@ requirement_id: REQ-A214-001
 requirement_name: 悬空障碍物碰撞优化
 status: 已验证
 reusable_content:
-  test_points_file: 算法测试/A2.14/测试点/悬空障碍物测试点.md
+  test_points_file: 算法/A2.14/测试点/悬空障碍物测试点.md
   test_points_available: true
-  test_cases_file: 算法测试/A2.14/测试用例/A2.14测试用例.xlsx
+  test_cases_file: 算法/A2.14/测试用例/A2.14测试用例.xlsx
   test_cases_count: 30
   test_cases_available: true
-  test_data_template: 算法测试/A2.14/测试数据/悬空障碍物_test_data_template.json
+  test_data_template: 算法/A2.14/测试数据/悬空障碍物_test_data_template.json
   test_data_available: true
-  solution_file: 算法测试/A2.14/方案/悬空障碍物方案.md
+  solution_file: 算法/A2.14/方案/悬空障碍物方案.md
   solution_available: true
 ```
 

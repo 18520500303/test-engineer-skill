@@ -56,22 +56,21 @@
 
 ## 目录结构
 
-```
-算法测试/
-├── A2.14/
-│   ├── 测试数据/
-│   │   ├── 悬空障碍物_test_data.json
-│   │   └── 悬空障碍物_test_data_template.json
-├── A2.21/
-│   └── 测试数据/
+> 所有路径相对于 preset 的 `paths.output_root` 配置。
+> 产品线目录名通过 `line_dirs` 映射：算法线→"算法"，平台线→"平台"，专项测试→"专项"。
 
-平台线/
-├── 平台测试/
-│   ├── MP_v1.1.26/
-│   │   └── 测试数据/
-│   │       ├── 公告管理_test_data.json
-│   │       └── 公告管理_test_data_template.json
-│   └── MP_v1.1.27/
+```
+{line_dir}/
+├── {版本号}/
+│   └── 测试数据/
+│       ├── {需求名称}_test_data.json
+│       └── {需求名称}_test_data_template.json
+```
+
+示例：
+```
+算法/A2.26/测试数据/窄道通过性专项_test_data.json
+平台/MP_v1.1.28/测试数据/OTA需求-2.0_test_data_template.json
 ```
 
 **命名规则**：
@@ -99,7 +98,7 @@
 **输出**：
 ```yaml
 success: true
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 test_cases_count: 10
 ```
 
@@ -124,7 +123,7 @@ test_cases_count: 10
 **输出**：
 ```yaml
 success: true
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 updated_cases: 2
 statistics:
   total: 10
@@ -159,7 +158,7 @@ statistics:
 **输出**：
 ```yaml
 found: true
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 test_cases:
   - case_id: "TC-001"
     status: "passed"
@@ -219,7 +218,7 @@ details:
 ```yaml
 success: true
 imported_cases: 15
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 ```
 
 ---
@@ -262,7 +261,7 @@ data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
 **输出**：
 ```yaml
 success: true
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 updated_cases: 3
 statistics:
   total: 10
@@ -304,7 +303,7 @@ message: "测试数据更新成功"
 **输出**：
 ```yaml
 success: true
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 updated_cases: 3
 target_status: "passed"
 statistics:
@@ -318,7 +317,7 @@ message: "批量更新成功"
 
 **使用示例**：
 ```
-批量更新用例状态：平台线/平台测试/MP_v1.1.26/测试数据/公告管理_test_data.json
+批量更新用例状态：平台/MP_v1.1.26/测试数据/公告管理_test_data.json
 用例列表：TC-001,TC-002,TC-003
 目标状态：passed
 ```
@@ -346,7 +345,7 @@ message: "批量更新成功"
 **输出**：
 ```yaml
 success: true
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 imported_cases: 15
 updated_cases: 15
 failed_cases: 0
@@ -390,7 +389,7 @@ message: "从Excel导入成功"
 **输出**：
 ```yaml
 success: true
-data_file: "算法测试/A2.14/测试数据/悬空障碍物_test_data.json"
+data_file: "算法/A2.14/测试数据/悬空障碍物_test_data.json"
 case_id: "TC-001"
 case_name: "悬空障碍物避障测试"
 updated_status: "passed"
@@ -813,8 +812,8 @@ test-data-manager读取测试数据文件
 ## 注意事项
 
 1. **版本目录结构**：
-   - 算法线：`算法测试/{版本}/测试数据/`
-   - 平台线：`平台线/平台测试/{版本}/测试数据/`
+   - 算法线：`算法/{版本}/测试数据/`
+   - 平台线：`平台/{版本}/测试数据/`
    - 专项测试：`算法测试/专项测试/{专项}/测试数据/`
 
 2. **测试数据与模板**：
@@ -843,14 +842,14 @@ test-data-manager读取测试数据文件
 
 用户：
 ```
-创建测试数据文件：平台线/平台测试/MP_v1.1.26/测试数据/公告管理_test_data_template.json
-保存到：平台线/平台测试/MP_v1.1.26/测试数据/
+创建测试数据文件：平台/MP_v1.1.26/测试数据/公告管理_test_data_template.json
+保存到：平台/MP_v1.1.26/测试数据/
 ```
 
 test-data-manager：
 ```yaml
-读取模板文件：平台线/平台测试/MP_v1.1.26/测试数据/公告管理_test_data_template.json
-创建测试数据文件：平台线/平台测试/MP_v1.1.26/测试数据/公告管理_test_data.json
+读取模板文件：平台/MP_v1.1.26/测试数据/公告管理_test_data_template.json
+创建测试数据文件：平台/MP_v1.1.26/测试数据/公告管理_test_data.json
 用例数量：15
 成功：✓
 ```
@@ -859,7 +858,7 @@ test-data-manager：
 
 用户：
 ```
-更新测试数据：平台线/平台测试/MP_v1.1.26/测试数据/公告管理_test_data.json
+更新测试数据：平台/MP_v1.1.26/测试数据/公告管理_test_data.json
 更新内容：
   - TC-001：passed，功能正常
   - TC-002：passed，功能正常
@@ -868,7 +867,7 @@ test-data-manager：
 
 test-data-manager：
 ```yaml
-读取文件：平台线/平台测试/MP_v1.1.26/测试数据/公告管理_test_data.json
+读取文件：平台/MP_v1.1.26/测试数据/公告管理_test_data.json
 更新3个用例
 重新计算统计：
   total: 15

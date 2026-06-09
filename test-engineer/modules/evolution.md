@@ -66,15 +66,15 @@ SKILL.md 的自评审流程中，在"质量检查 + 沉淀检查"之后，新增
 **执行步骤**：
 
 1. **识别可沉淀内容**：新缺陷模式、测试经验、流程改进
-2. **检查去重**：读取 `../shared-knowledge/knowledge-base/` 对应目录，只沉淀增量
+2. **检查去重**：读取 `{paths.knowledge_base}` 对应目录，只沉淀增量
 3. **写入位置**：
    | 内容类型 | 沉淀位置 |
    |---|---|
-   | 缺陷模式 | `../shared-knowledge/knowledge-base/defect-patterns/` |
-   | 业务规则 | `../shared-knowledge/knowledge-base/business-rules/` |
-   | 测试方法 | `../shared-knowledge/knowledge-base/methodologies/` |
-   | 排查经验 | `../shared-knowledge/knowledge-base/troubleshoot-patterns/` |
-   | 系统基线 | `../shared-knowledge/knowledge-base/system-baselines/` |
+   | 缺陷模式 | `{paths.knowledge_base}defect-patterns/` |
+   | 业务规则 | `{paths.knowledge_base}business-rules/` |
+   | 测试方法 | `{paths.shared_knowledge}testing-frameworks/` |
+   | 排查经验 | `{paths.knowledge_base}diagnosis/` |
+   | 系统基线 | `{paths.knowledge_base}system-baselines/` |
 4. **追加进化日志** + **追加 knowledge 类型信号**
 
 ---
@@ -85,7 +85,7 @@ SKILL.md 的自评审流程中，在"质量检查 + 沉淀检查"之后，新增
 
 **执行步骤**：
 
-1. 扫描 `../shared-knowledge/knowledge-base/` 下所有子目录
+1. 扫描 `{paths.knowledge_base}` 下所有子目录
 2. 健康检查：
    - [ ] 过时内容 — 基于旧版本的知识？
    - [ ] 重复内容 — 不同目录下相似/重复？

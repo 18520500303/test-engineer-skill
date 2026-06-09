@@ -1,0 +1,5 @@
+{"date": "2026-05-29", "type": "user_correction", "module": "SKILL", "context": "用户说没有单体传感器时，错误地删除了精度测试整块，应该调整测试方法（整机上测）而非删除测试范围。约束条件≠削减需求。", "version": "专项-欢创F2C1", "severity": "high", "processed": true}
+{"date": "2026-05-29", "type": "user_correction", "module": "SKILL", "context": "复盘后只口头总结教训，没有自动执行沉淀（写memory+写evolution信号），需要用户二次提醒才补上。复盘必须在同一回复内完成所有沉淀动作。", "version": "专项-欢创F2C1", "severity": "medium", "processed": true}
+{"date": "2026-05-29", "type": "user_correction", "module": "SKILL", "context": "整机集成测试脚本仍使用串口直连方式，没有适配整机场景（应从ROS2 topic读数据）。调整测试范围时必须同步调整工具实现。", "version": "专项-欢创F2C1", "severity": "high", "processed": true}
+{"date": "2026-06-08", "type": "user_correction", "module": "sweeper-robot-test", "context": "自动探索优化专项初始设计包含策略一（前沿边界）和策略二（沿墙绕场+补漏）两套测试场景，但实际研发最终仅实现了策略一。测试设计应提前确认实现范围，避免为未落地的方案编写测试点。", "version": "专项-自动探索优化", "severity": "medium", "processed": false}
+{"date": "2026-06-08", "type": "bottleneck", "module": "auto-explore-test", "context": "自动探索脚本首次编写，code-review发现5个bug（epoch/midnight混用、线程安全、资源泄漏、PGM解析、类型转换），说明设备端脚本需要特别注意时间域一致性和线程安全。已沉淀到脚本注释和测试经验中。", "version": "专项-自动探索优化", "severity": "medium", "processed": false}

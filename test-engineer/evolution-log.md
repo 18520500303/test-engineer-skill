@@ -1,5 +1,14 @@
 # Evolution Log
 
+## 2026-05-29
+
+- [prompt] SKILL.md 核心约束新增：资源约束≠删测试范围，遇条件受限先找替代方法
+  - 触发信号：1条 high severity user_correction（欢创F2C1专项，删除精度测试）
+  - 审批状态：已批准
+- [prompt] SKILL.md 自评审新增第5条：沉淀即时执行，禁止只口头总结不写文件
+  - 触发信号：1条 medium severity user_correction（复盘未沉淀）
+  - 审批状态：已批准
+
 ## 2026-05-18 (v2 — 框架改造)
 
 - [框架] 消除 preset 启动依赖：config.yaml/preset.yaml 改为可选，内置 C3 默认配置

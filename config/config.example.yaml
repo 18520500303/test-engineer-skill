@@ -7,17 +7,10 @@ project:
 
 user:
   name: ""                            # 用户姓名（用于报告署名）
-  jira_username: ""                   # Jira 用户名
 
-# 以下字段目前放全局 config，后续多产品线时可迁移到 preset.yaml
-jira:
-  host: ""                            # 如 "jira.cvte.com"
-  platform_project: ""                # 平台线 Jira 项目，如 "WRB"
-  algorithm_project: ""               # 算法线 Jira 项目，如 "RBTPROJECT"
-  version_field: "affectedVersion"    # 版本查询字段
-
-output:
-  root: "~/Desktop/workdata/测试用例"  # 文件输出根目录
+# 以下配置已迁移到 preset.yaml（产品级配置）
+# 包括：jira 项目映射、版本号正则、输出根目录等
+# 详见 presets/{preset}/preset.yaml
 
 confluence:
   host: ""                            # 如 "kb.cvte.com"

@@ -5,7 +5,6 @@ description: "示例配置包 - 复制此目录并修改为你的产品线配置
 
 # 白名单：只有列出的模块对该 preset 可用
 # SKILL.md 路由时检查此列表，未列出的模块不会加载
-# 用户请求未列出的模块时，提示"当前配置包不支持此功能"
 modules:
   - req-manager
   - test-case-generator
@@ -16,3 +15,18 @@ modules:
 # 你的产品线版本号格式
 version_patterns:
   main: "v1.x.x"
+
+# 路径配置（产品级）
+paths:
+  output_root: "~/Desktop/workdata/测试"          # 文件输出根目录
+  test_expert: "../sweeper-robot-test/SKILL.md"    # 算法测试专家 skill
+  shared_knowledge: "../shared-knowledge/knowledge-base/"  # 通用知识库
+  knowledge_base: "../shared-knowledge/example-product/"    # 产品专项知识库
+  product_knowledge: "../shared-knowledge/example-product/product-knowledge.md"
+  jira_mapping: "../shared-knowledge/example-product/jira-projects.md"
+
+# Jira 项目映射（产品特有，不同产品用不同项目名）
+jira_projects:
+  platform_defect: "YOUR-PROJECT"      # 平台线缺陷 Jira 项目
+  platform_requirement: "YOUR-PROJECT"  # 平台线需求 Jira 项目
+  algo_defect: "YOUR-PROJECT"           # 算法线缺陷 Jira 项目

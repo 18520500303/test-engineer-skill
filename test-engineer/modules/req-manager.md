@@ -41,7 +41,7 @@
 - 需求类型不确定时返回调用者处理
 - 需求内容以SKILL.md提供的信息为准
 - 关联关系需SKILL.md确认
-- **平台线需求必须读取共享产品知识**：`../shared-knowledge/platform-app-product-knowledge.md`，确保需求理解不偏离产品规则（如恢复出厂=所有开关OFF、配网≠绑定等）
+- **平台线需求必须读取共享产品知识**：`{paths.product_knowledge}`，确保需求理解不偏离产品规则（如恢复出厂=所有开关OFF、配网≠绑定等）
 
 ---
 
@@ -151,9 +151,9 @@
 **执行步骤：**
 
 1. **提取功能域关键词**：从 requirement_desc 中识别功能域（如"设备管理""任务调度""地图导航""网络管理""日志分析"）
-2. **查询业务规则**：读取 `../shared-knowledge/knowledge-base/business-rules/index.json`，按 `area` 字段匹配，获取该功能域的所有业务规则和 test_implications
-3. **查询缺陷模式**：读取 `../shared-knowledge/knowledge-base/defect-patterns/pattern-index.json`，按 `requirement_type` 匹配，获取该需求类型的高频缺陷模式
-4. **读取系统基线**：根据需求涉及的服务，从 `../shared-knowledge/knowledge-base/system-baselines/` 读取设备规格、服务列表等基线信息
+2. **查询业务规则**：读取 `{paths.knowledge_base}business-rules/index.json`，按 `area` 字段匹配，获取该功能域的所有业务规则和 test_implications
+3. **查询缺陷模式**：读取 `{paths.knowledge_base}defect-patterns/pattern-index.json`，按 `requirement_type` 匹配，获取该需求类型的高频缺陷模式
+4. **读取系统基线**：根据需求涉及的服务，从 `{paths.knowledge_base}system-baselines/` 读取设备规格、服务列表等基线信息
 
 **输出：** 将检索到的知识注入后续步骤的上下文中：
 - 业务规则列表 → 步骤2的"系统视角"和"异常视角"参考
@@ -298,9 +298,9 @@
 
 ### 步骤9：保存需求文档
 
-- 算法线：`算法测试/{版本}/需求/`
-- 平台线：`平台线/平台测试/需求/`
-- 专项测试：`专项测试/{专项名称}/需求/`
+- 算法线：`算法/{版本}/需求/`
+- 平台线：`平台/{版本}/需求/`
+- 专项测试：`专项/{专项名称}/需求/`
 
 ### 步骤10：返回结果
 
