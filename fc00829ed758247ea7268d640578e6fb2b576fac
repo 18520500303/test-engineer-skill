@@ -1,0 +1,26 @@
+CLAUDE.md
+  a846d94c8d45b823 3-7,10,12-19,21-28,34,37-38,44
+README.md
+  a846d94c8d45b823 3,5-21,25-28,30-34,37-51,53-60,62-65,68,78,80-82,85,89-94,96,98-103,105-117,122-123,126,128
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.0",
+  "base_commit_sha": "fc00829ed758247ea7268d640578e6fb2b576fac",
+  "prompts": {
+    "a846d94c8d45b823": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "711f04c2-eccc-40b3-9e8a-65f8c152d4cd",
+        "model": "qwen3.7-max"
+      },
+      "human_author": "zhoujianrong <18520500303@users.noreply.github.com>",
+      "messages": [],
+      "total_additions": 123,
+      "total_deletions": 40,
+      "accepted_lines": 123,
+      "overriden_lines": 0,
+      "messages_url": "https://gitai.gz.cvte.cn/cas/7b9f268af53e99f6c01b8e98a1813bd249b03fabd283d375ccb5ca73ec745726"
+    }
+  }
+}
