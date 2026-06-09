@@ -4,9 +4,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 SKILL_DIR="$REPO_DIR/test-engineer"
-CONFIG_DIR="$REPO_DIR/config"
-PRESETS_DIR="$REPO_DIR/presets"
-TARGET="$HOME/.claude/skills/test-engineer"
+SKILLS_ROOT="$HOME/.claude/skills"
 
 echo "=============================="
 echo "  test-engineer 安装向导"
@@ -23,107 +21,89 @@ fi
 echo "  ✓ Claude Code 已安装"
 echo
 
-# Step 2: 选择 preset
-echo "[2/4] 选择业务配置包:"
-PRESETS=()
-i=1
-for d in "$PRESETS_DIR"/*/; do
-    name=$(basename "$d")
-    PRESETS+=("$name")
-    if [ "$name" = "example" ]; then
-        echo "  $i) $name (示例)"
-    else
-        echo "  $i) $name"
-    fi
-    i=$((i + 1))
-done
-echo "  $i) 自定义路径"
-echo
-read -p "请选择 [1]: " preset_choice
-preset_choice=${preset_choice:-1}
+# Step 2: 创建 symlinks
+echo "[2/4] 安装 skill..."
 
-if [ "$preset_choice" -le "${#PRESETS[@]}" ] 2>/dev/null; then
-    SELECTED_PRESET="${PRESETS[$((preset_choice - 1))]}"
-else
-    read -p "请输入 preset 目录路径: " custom_path
-    SELECTED_PRESET="custom"
-fi
-echo "  已选择: $SELECTED_PRESET"
-echo
+mkdir -p "$SKILLS_ROOT"
 
-# Step 3: 配置基本信息
-echo "[3/4] 配置基本信息:"
-
-read -p "  姓名: " user_name
-read -p "  Jira 用户名: " jira_username
-read -p "  文件输出目录 [~/Desktop/workdata/测试用例]: " output_root
-output_root=${output_root:-"~/Desktop/workdata/测试用例"}
-
-# 从 preset.yaml 读取产品名（如果有）
-product_name=""
-if [ -f "$PRESETS_DIR/$SELECTED_PRESET/preset.yaml" ]; then
-    product_name=$(grep "display_name:" "$PRESETS_DIR/$SELECTED_PRESET/preset.yaml" | sed 's/.*: *"\(.*\)"/\1/' 2>/dev/null || echo "")
-fi
-if [ -z "$product_name" ]; then
-    read -p "  产品名称: " product_name
-fi
-
-read -p "  Jira 主机 [jira.cvte.com]: " jira_host
-jira_host=${jira_host:-"jira.cvte.com"}
-
-read -p "  Confluence 主机 [kb.cvte.com]: " confluence_host
-confluence_host=${confluence_host:-"kb.cvte.com"}
-
-# 从 preset.yaml 读取 Jira 项目（如果有默认值）
-read -p "  平台线 Jira 项目 [WRB]: " platform_project
-platform_project=${platform_project:-"WRB"}
-
-read -p "  算法线 Jira 项目 [RBTPROJECT]: " algorithm_project
-algorithm_project=${algorithm_project:-"RBTPROJECT"}
-
-echo
-
-# Step 4: 安装
-echo "[4/4] 安装中..."
-
-# 创建 symlink
+# Skill symlink
+TARGET="$SKILLS_ROOT/test-engineer"
 if [ -L "$TARGET" ]; then
     rm "$TARGET"
-    echo "  已移除旧 symlink"
-fi
-if [ -d "$TARGET" ]; then
+    echo "  ✓ 已更新 skill symlink"
+elif [ -d "$TARGET" ]; then
     echo "  ✗ $TARGET 已存在且不是 symlink，请手动处理"
     exit 1
 fi
-ln -s "$SKILL_DIR" "$TARGET"
-echo "  ✓ skill symlink → $TARGET"
+ln -sf "$SKILL_DIR" "$TARGET"
+echo "  ✓ test-engineer → $TARGET"
 
-# 生成 config.yaml
-cat > "$CONFIG_DIR/config.yaml" << EOF
+# Config symlink (from repo template if not exists)
+CONFIG_SRC="$REPO_DIR/config"
+CONFIG_TARGET="$SKILLS_ROOT/config"
+if [ -L "$CONFIG_TARGET" ]; then
+    rm "$CONFIG_TARGET"
+elif [ -d "$CONFIG_TARGET" ]; then
+    echo "  ⚠ $CONFIG_TARGET 已存在，保留原文件"
+    CONFIG_TARGET=""
+fi
+if [ -n "$CONFIG_TARGET" ]; then
+    ln -sf "$CONFIG_SRC" "$CONFIG_TARGET"
+    echo "  ✓ config → $CONFIG_TARGET"
+fi
+
+# Presets symlink
+PRESETS_SRC="$REPO_DIR/presets"
+PRESETS_TARGET="$SKILLS_ROOT/presets"
+if [ -L "$PRESETS_TARGET" ]; then
+    rm "$PRESETS_TARGET"
+elif [ -d "$PRESETS_TARGET" ]; then
+    echo "  ⚠ $PRESETS_TARGET 已存在，保留原文件"
+    PRESETS_TARGET=""
+fi
+if [ -n "$PRESETS_TARGET" ]; then
+    ln -sf "$PRESETS_SRC" "$PRESETS_TARGET"
+    echo "  ✓ presets → $PRESETS_TARGET"
+fi
+
+echo
+
+# Step 3: 检测私有仓库
+echo "[3/4] 检测私有配置..."
+PRIVATE_DIR="$(dirname "$REPO_DIR")/test-engineer-private"
+if [ -d "$PRIVATE_DIR" ]; then
+    echo "  ✓ 检测到 test-engineer-private"
+    echo "  运行 link.sh 挂载私有配置..."
+    bash "$PRIVATE_DIR/link.sh"
+else
+    echo "  ⚠ 未检测到 test-engineer-private（可选）"
+    echo "  如需 C3/Kavabot 产品配置，请 clone test-engineer-private 到同级目录"
+fi
+echo
+
+# Step 4: 生成 config.yaml
+echo "[4/4] 配置..."
+
+CONFIG_FILE="$CONFIG_SRC/config.yaml"
+if [ ! -f "$CONFIG_FILE" ]; then
+    # 检测可用 preset
+    DEFAULT_PRESET="example"
+    if [ -d "$PRIVATE_DIR/presets/kavabot" ]; then
+        DEFAULT_PRESET="kavabot"
+    fi
+
+    read -p "  选择 preset [$DEFAULT_PRESET]: " selected_preset
+    selected_preset=${selected_preset:-$DEFAULT_PRESET}
+
+    cat > "$CONFIG_FILE" << EOF
+# test-engineer 配置文件
 project:
-  name: "$product_name"
-  preset: "$SELECTED_PRESET"
-
-user:
-  name: "$user_name"
-  jira_username: "$jira_username"
-
-jira:
-  host: "$jira_host"
-  platform_project: "$platform_project"
-  algorithm_project: "$algorithm_project"
-  version_field: "affectedVersion"
-
-output:
-  root: "$output_root"
-
-confluence:
-  host: "$confluence_host"
-
-metersphere:
-  enabled: false
+  preset: $selected_preset
 EOF
-echo "  ✓ 配置写入 → config/config.yaml"
+    echo "  ✓ config.yaml 已生成 (preset: $selected_preset)"
+else
+    echo "  ✓ config.yaml 已存在，跳过"
+fi
 
 echo
 echo "=============================="
